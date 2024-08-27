@@ -1,0 +1,36 @@
+<form>
+    <p>
+      <label>Insira a placa do carro:
+                  <input type="text" name="placa" id='ehistoai' placeholder="ABC-1234" maxlength="14" autofocus>
+              </label>
+    </p>
+  </form>
+
+<style>
+    input{
+        margin: 50px auto;
+        display: block;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        font-size: 16px;
+    }
+</style>
+
+<script>
+    const input = document.getElementById("ehistoai");
+
+input.addEventListener(onfocus, validarCPF);
+
+function validarCPF(e) {
+  if (e.key !== "Backspace" && e.key !== "Delete") {
+    var cpf = input.value.match(/\w/g) ?? "";
+    if (cpf.length >= 3) cpf.splice(3, 0, ".");
+    if (cpf.length >= 7) cpf.splice(7, 0, ".");
+    if (cpf.length >= 11) cpf.splice(11, 0, "-");
+    input.value = cpf.join("");
+  }
+}
+
+input.addEventListener("keyup", validarCPF);
+</script>
